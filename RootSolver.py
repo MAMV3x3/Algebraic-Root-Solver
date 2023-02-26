@@ -177,13 +177,13 @@ def graph(x_points, y_points):
     # Create the axes
     ax = fig.add_subplot(111)
     # Set the title
-    ax.set_title("Function vs Iteration")
+    ax.set_title("Root vs Iteration")
     # Set the x label
     ax.set_xlabel("Iteration")
     # Set the y label
-    ax.set_ylabel("Function")
-    # Show the reached root with a red dot and a label "root"
-    ax.plot(x_points[-1], y_points[-1], "ro", label="root")
+    ax.set_ylabel("Root")
+    # Show the reached root with a red dot and a label "root" in the legend and put it on the left
+    ax.plot(x_points[-1], y_points[-1], "ro", label="root", markersize=10)
     # Mark the root value in the y axis and make it fit inside the graph and dont overflow
     ax.annotate("{:.5f}".format(y_points[-1]), xy=(x_points[-1], y_points[-1]), xytext=(0, 20), textcoords="offset points",
                 ha="center", va="bottom", bbox=dict(boxstyle="round", fc="w"), arrowprops=dict(arrowstyle="->"))
@@ -192,9 +192,11 @@ def graph(x_points, y_points):
     # Set the x axis limits
     ax.set_xlim([0, len(x_points) + 1])
     # Set the y axis limits
-    ax.set_ylim([min(y_points) - 0.5, max(y_points) + 0.5])
+    ax.set_ylim([min(y_points) - 1, max(y_points) + 1])
     # Connect the points with a line and plot the graph
     ax.plot(x_points, y_points)
+    # Add dotted line in the y axis to mark the root
+    ax.axhline(y=y_points[-1], color="black", linestyle="--")
     # Show the legend
     ax.legend()
     # Show the graph
